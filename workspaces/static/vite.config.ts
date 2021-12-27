@@ -17,10 +17,9 @@ if (!isProd) {
           const result = path.replace(/^\/api/, "");
           console.log("got path", {
             path,
-            result,
-            devp: config.API_SERVER_DEV_PORT,
+            directTo: `:${config.API_SERVER_DEV_PORT}${result}`,
           });
-          return path || result;
+          return result;
         },
       },
     },

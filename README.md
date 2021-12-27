@@ -82,7 +82,13 @@ For the client dev server, API calls are routed to the API (dev) server using th
 
 ## Configuration
 
-You can configure how the parts of the app are connected to each other.
+You can configure how the parts of the app are connected to each other.  You may very well only ever need or want
+to adjust the Docker container port, since the internal port wiring can be regarded as a bit of a black box.
+
+However, if you develop and run the client and API server locally, the ports may be occupied on your machine
+already, and you may need to change only those.  **In that case, you will not have to touch any docker-
+(or nginx-) related configuration**, so it is still quite simple - only the `config.ts` files in the static and
+server directories need to be adjusted.
 
 ### Ports
 
@@ -101,14 +107,17 @@ The API server runs on port `3002`.  The value needs to be updated in these plac
 |                | File                                   | What                             |
 |----------------|----------------------------------------|----------------------------------|
 | API server     | `workspaces/server/src/config.ts`      | the `API_SERVER_PORT` setting    |
-| Static         | `workspaces/static/nginx/default.conf` | the `upstream api` block         |
-|                | `workspaces/static/src/config.ts`      | the `API_SERVER_DEV_PORT`setting |
+| Static         | `workspaces/static/src/config.ts`      | the `API_SERVER_DEV_PORT`setting |
+|                | `workspaces/static/nginx/default.conf` | the `upstream api` block         |
 | Root config    | `docker-compose.yml`                   | the `services/api/ports` section |
 
 
 #### Docker container
 
-The docker container itself runs on port `3000`.  The value needs to be updated in these places:
+The docker container itself runs on port `3000`.  This is the value you may want to change
+for your deployment to a production server or something like that.
+
+The value needs to be updated in these places:
 
 |                | File                                   | What                                |
 |----------------|----------------------------------------|-------------------------------------|
