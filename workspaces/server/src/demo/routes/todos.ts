@@ -22,7 +22,6 @@ export default function (
   app.delete<{ Params: { id: string } }>("/:id", async (req, repl) => {
     const { id } = req.params;
     const todo = await TodoItem.findByIdAndDelete(id);
-    console.log("deleted", { id, todo });
     if (!todo) {
       repl.code(404).send(null);
     }
@@ -31,7 +30,6 @@ export default function (
 
   app.get<{ Params: { id: string } }>("/:id", async (req, repl) => {
     const { id } = req.params;
-    console.log("Wanna GET", id);
     const todo = await TodoItem.findById(id);
     return todo;
   });
@@ -40,7 +38,6 @@ export default function (
     "/:id",
     async (req, repl) => {
       const { id } = req.params;
-      console.log("Wanna update (put)", id, req.body.done);
       const todo = await TodoItem.findByIdAndUpdate(
         id,
         {
