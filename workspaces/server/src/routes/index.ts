@@ -1,12 +1,12 @@
 import { FastifyInstance, FastifyPluginOptions } from "fastify";
 
-import itemsHandler from "./items";
+import todosHandler from "../demo/routes/todos";
 
 export default function (
   app: FastifyInstance,
   opts: FastifyPluginOptions,
   done: (err?: Error) => void
 ) {
-  app.register(itemsHandler, { prefix: "/items" });
+  app.register(todosHandler, { prefix: "/todos" });
   done();
 }

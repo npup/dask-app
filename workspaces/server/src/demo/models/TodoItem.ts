@@ -1,15 +1,19 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const ItemSchema = new Schema({
+const TodoItemSchema = new Schema({
   name: {
     type: String,
     required: true,
   },
-  date: {
+  done: {
+    type: Boolean,
+    default: false,
+  },
+  created: {
     type: Date,
     default: Date.now,
   },
 });
 
-export const Item = mongoose.model("item", ItemSchema);
+export const TodoItem = mongoose.model("todoItem", TodoItemSchema);

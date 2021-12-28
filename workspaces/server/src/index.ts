@@ -8,14 +8,8 @@ const app = fastify({
   ignoreTrailingSlash: true,
 });
 
-import api from "./routes/api/";
-//app.register(api, { prefix: "/api" });
+import api from "./routes";
 app.register(api);
-
-app.register((app, options, done) => {
-  console.log("-----", app);
-  done();
-});
 
 initDb()
   .then((dbInfo) => {
