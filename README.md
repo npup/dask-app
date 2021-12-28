@@ -51,6 +51,7 @@ It is easy to add more volumes.  Just remember to set up the directory in the co
 |--------------|------------------|-----------------------------------|-----------------------------------|
 | mongo        | `volumes/mongo`  | locally installed mongo instance. | `workspaces/server/src/config.ts`    |
 | file storage | `volumes/files`  | `workspaces/server/.tmp/files`    | `workspaces/server/src/config.ts`    |
+
 For example, in non-container running of the the API server, it uses a _.tmp_ directory as a substitute for the files volume.  This is set up in `workspaces/server/src/config.ts`.
 
 
