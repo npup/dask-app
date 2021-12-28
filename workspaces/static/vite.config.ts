@@ -4,8 +4,8 @@ import { config } from "./src/config";
 
 const isProd = process.env.NODE_ENV === "production";
 
-// dev server settings
 let server = null;
+// dev server settings
 if (!isProd) {
   server = {
     host: "0.0.0.0",
@@ -15,10 +15,6 @@ if (!isProd) {
         target: `http://0.0.0.0:${config.API_SERVER_DEV_PORT}/`,
         rewrite(path) {
           const result = path.replace(/^\/api/, "");
-          console.log("got path", {
-            path,
-            directTo: `:${config.API_SERVER_DEV_PORT}${result}`,
-          });
           return result;
         },
       },
