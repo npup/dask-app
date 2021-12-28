@@ -1,6 +1,5 @@
 import * as React from "react";
 import { useState, useEffect, useRef } from "react";
-import { Container, Button, TextInput, Checkbox, List } from "@mantine/core";
 import { todosService } from "./services";
 import { TodoItem } from "./services/todos/types";
 
@@ -40,29 +39,35 @@ export function Todos() {
   }
 
   return (
-    <Container>
+    <div style={{ maxWidth: "25em", margin: "2em auto" }}>
       <form onSubmit={handleSubmit}>
-        <TextInput
-          ref={nameRef}
-          value={name}
-          onChange={handleChange}
-          label="Todo"
-        />
+        <label style={{ display: "flex", flexDirection: "column" }}>
+          Todo
+          <input
+            type="text"
+            ref={nameRef}
+            value={name}
+            onChange={handleChange}
+          />
+        </label>
         <div style={{ textAlign: "right", marginTop: "1em" }}>
-          <Button type="submit">Create</Button>
+          <button type="submit">Create</button>
         </div>
       </form>
-      <List>
+      <ul>
         {items.map((item) => (
-          <List.Item key={item._id}>
-            <Checkbox
-              checked={item.done}
-              onChange={() => toggleTodo(item)}
-              label={item.name}
-            />
-          </List.Item>
+          <li key={item._id}>
+            <label>
+              <input
+                type="checkbox"
+                checked={item.done}
+                onChange={() => toggleTodo(item)}
+              />
+              {item.name}
+            </label>
+          </li>
         ))}
-      </List>
-    </Container>
+      </ul>
+    </div>
   );
 }
