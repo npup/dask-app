@@ -1,5 +1,5 @@
 import { apiGet, apiPatch, apiPost } from "../util";
-import { TodoItem } from "./types";
+import type { TodoItem } from "./types";
 
 const PATH = "/api/todos";
 export async function getAll(): Promise<TodoItem[]> {

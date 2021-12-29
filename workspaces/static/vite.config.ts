@@ -1,5 +1,5 @@
 import { defineConfig } from "vite";
-import react from "@vitejs/plugin-react";
+import { svelte } from "@sveltejs/vite-plugin-svelte";
 import { config } from "./src/config";
 
 const isProd = process.env.NODE_ENV === "production";
@@ -30,7 +30,11 @@ const conf = defineConfig({
     sourcemap: true,
     emptyOutDir: true,
   },
-  plugins: [react()],
+  plugins: [
+    svelte({
+      configFile: "../svelte.config.mjs",
+    }),
+  ],
   server,
 });
 
