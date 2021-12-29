@@ -1,7 +1,7 @@
 {
-  "name": "nginx-backend-frontend",
+  "name": "dask-app",
   "version": "1.0.0",
-  "description": "dockerized project that has a statically built frontend and an api server",
+  "description": "Dockerized project that has a statically built frontend, an API server, a MongoDB database and a volume for files",
   "scripts": {
     "start": "docker-compose up --detach",
     "stop": "docker-compose down --volumes --rmi local",
