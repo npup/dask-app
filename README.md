@@ -83,15 +83,27 @@ For the client dev server, API calls are routed to the API (dev) server using th
 
 ## Configuration
 
+The app has some configuration for how the parts are connected to each aother (ports), where volumes and
+temporary data is stored, etc.
+
+### Ports
+
 You can configure how the parts of the app are connected to each other.  You may very well only ever need or want
 to adjust the Docker container port, since the internal port wiring can be regarded as a bit of a black box.
 
 However, if you develop and run the client and API server locally, the ports may be occupied on your machine
 already, and you may need to change only those.  **In that case, you will not have to touch any docker-
-(or nginx-) related configuration**, so it is still quite simple - only the `config.ts` files in the static and
-server directories need to be adjusted.
+(or nginx-) related configuration**, so it is still quite simple - only the `config.ts` files in the static and server directories need to be adjusted.
 
-### Ports
+#### Docker container
+
+On `npm start`, the main Docker container itself runs on port `3000`.  This is to be changed in `docker-compose.yml`.  On a production server, you will want to sync this with the reverse-proxy setting that is given as an example in `docker-nginx-conf`.
+
+|                | File                      | What                                |
+|----------------|---------------------------|-------------------------------------|
+| Root config    | `docker-compose.yml`      | the `services/static/ports` section |
+| Root config    | `docker-nginx-conf`       | the `upstream dockerized` section   |
+
 
 #### Client
 
@@ -112,18 +124,6 @@ The API server runs on port `3002`.  The value needs to be updated in these plac
 |                | `workspaces/static/nginx/default.conf` | the `upstream api` block         |
 | Root config    | `docker-compose.yml`                   | the `services/api/ports` section |
 
-
-#### Docker container
-
-The docker container itself runs on port `3000`.  This is the value you may want to change
-for your deployment to a production server or something like that.
-
-The value needs to be updated in these places:
-
-|                | File                                   | What                                |
-|----------------|----------------------------------------|-------------------------------------|
-| Static         | `workspaces/static/nginx/default.conf` | the `services/static/ports` section |
-| Root config    | `docker-nginx-conf`                    | the `upstream dockerized` section   |
 
 
 
