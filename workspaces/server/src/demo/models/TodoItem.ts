@@ -1,7 +1,12 @@
-const mongoose = require("mongoose");
-const Schema = mongoose.Schema;
+import { Schema, model } from "mongoose";
 
-const TodoItemSchema = new Schema({
+interface ITodoItem {
+  name: string;
+  done?: boolean;
+  created?: Date;
+}
+
+const TodoItemSchema = new Schema<ITodoItem>({
   name: {
     type: String,
     required: true,
@@ -16,4 +21,4 @@ const TodoItemSchema = new Schema({
   },
 });
 
-export const TodoItem = mongoose.model("todoItem", TodoItemSchema);
+export const TodoItem = model("todoItem", TodoItemSchema);
