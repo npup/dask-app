@@ -1,3 +1,10 @@
 {
-  "include": ["./src/**/*.d.ts", "./src/**/*.ts", "./src/**/*.svelte"]
+  "extend": "@tsconfig/svelte/tsconfig.json",
+  "include": ["./src/**/*.d.ts", "./src/**/*.ts", "./src/**/*.svelte"],
+  "exclude": ["node_modules"],
+  "compilerOptions": {
+    "target": "es2016",
+    "module": "es6",
+    "types": ["node", "svelte"]
+  }
 }
