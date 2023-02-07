@@ -1,4 +1,4 @@
-FROM node:16.9.0 as clientbuild
+FROM node:18.13 as clientbuild
 
 WORKDIR /app
 
